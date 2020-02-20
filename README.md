@@ -2,7 +2,7 @@
 Simple, clean and fast. Real time passenger information for Dublin's LUAS tram system.
 # Simple-LUAS
 
-WIP
+This project uses the RTPI API supplied by Transport for Ireland for the Luas. Obviously there are a ton of real time apps out there for iOS and Android, as well as the official [Luas website](http://luas.ie/) - but my aim with this is to make a clean experience whilst also improving my dev skills.
 
 ### Feature List
 
