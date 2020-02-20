@@ -164,7 +164,21 @@
           </div>
         </div>
         <br />
+		<!-- Service Alert Delete -->
+				
+		<script>
+				document.addEventListener('DOMContentLoaded', () => {
+		  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+			$notification = $delete.parentNode;
+
+			$delete.addEventListener('click', () => {
+			  $notification.parentNode.removeChild($notification);
+			});
+		  });
+		});
+		</script>
         <div class="notification is-info">
+		<button class="delete"></button>
         <strong>Service Announcement</strong>
         <br />
 		<Br>

@@ -82,8 +82,7 @@
 		Either the page you're looking for doesn't exist or the stop you chose was passed incorrectly to the server. Either way, there's nothing here.<br><br>
 		<a href="index.php">Click here to go back</a>
 
-		
-		
+
 		
 		</div>
 
