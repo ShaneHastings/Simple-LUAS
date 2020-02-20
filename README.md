@@ -2,6 +2,7 @@
 Simple, clean and fast. Real time passenger information for Dublin's LUAS tram system.
 # Simple-LUAS
 
+WIP
 
 ### Feature List
 
@@ -10,3 +11,7 @@ Simple, clean and fast. Real time passenger information for Dublin's LUAS tram s
 - [ ] Favourite stops
 - [ ] Line indicator (Green/Red)
 - [x] List in progress...
+
+### Demo
+
+Check out the live version of the project **[here](https://shanehastings.eu/luas/)**.
