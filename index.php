@@ -125,16 +125,39 @@
         <div class="columns">
 		  <div class="column">
 				  <div class="box">
+				  <!-- Line Indicator Box -->
+				  <div class="tile">
+				  
+				  <?php 
+					$greenline = array("Broombridge","Cabra","Phibsborough","Grangegorman","Broadstone - DIT","Dominick","Parnell","O'Connell - Upper","OConnell - GPO","Marlborough","Westmoreland","Trinity","Dawson","St. Stephen's Green","Harcourt","Charlemont","Ranelagh","Beechwood","Cowper","Milltown","Windy Arbour","Dundrum","Balally","Kilmacud","Stillorgan","Sandyford","Central Park","Glencairn","The Gallops","Leopardstown Valley","Ballyogan Wood","Racecourse","Carrickmines","Brennanstown","Laughanstown","Cherrywood","Bride's Glen"); 
+					$xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
+					if (in_array(utf8_decode($xml['stop']), $greenline)) 
+					  { 
+							$isGreen = "success";
+					  } 
+					else
+					  { 
+							$isGreen = "danger";
+					  } 
+					?> 
+				  
+						<article class="tile is-child notification is-<?php echo $isGreen; ?>">
+					   <p class="title">
+					   <?php $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
+							  echo utf8_decode($xml['stop']) . "</p>  <p class='subtitle'>" . $xml->direction[0]['name'] . "</p>"; ?>
+
+					   </article>
+					</div>
+					<!-- RTPI Info -->
 				  <article class="media">
 
 					<div class="media-content">
 					  <div class="content">
 						<p>
+						  
 						  <br>
 						    <?php
                                               $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
-											  echo "<strong>" . utf8_decode($xml['stop']) . "</strong> <small>XXXXX Line</small> <small></small><br>";
-                                              echo "<b>Direction: </b>" . $xml->direction[0]['name'] . "<hr>";
                                               for ($i = 0; $i < count($xml->direction[0]); $i++) {
                                                                       echo "<b>Destination: </b>" . $xml->direction[0]->tram[$i]['destination'] . "<br>";
                                                                       echo "<b>Due in: </b>" . $xml->direction[0]->tram[$i]['dueMins'] . " mins<br><br>";
@@ -157,6 +180,16 @@
 		  </div>
 		  <div class="column">
 				  <div class="box">
+				  <!-- Line Indicator Box -->
+				  <div class="tile">
+						<article class="tile is-child notification is-<?php echo $isGreen; ?>">
+					   <p class="title">
+					   <?php $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
+							  echo utf8_decode($xml['stop']) . "</p>  <p class='subtitle'>" . $xml->direction[1]['name'] . "</p>"; ?>
+
+					   </article>
+					</div>
+					<!-- RTPI Info -->
 				  <article class="media">
 
 					<div class="media-content">
@@ -166,8 +199,6 @@
 						  <br>
 						    <?php
                                               $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
-											  echo "<strong>" . utf8_decode($xml['stop']) . "</strong> <small>XXXXX Line</small> <small></small><br>";
-                                              echo "<b>Direction: </b>" . $xml->direction[1]['name'] . "<hr>";
                                               for ($i = 0; $i < count($xml->direction[1]); $i++) {
                                                                       echo "<b>Destination: </b>" . $xml->direction[1]->tram[$i]['destination'] . "<br>";
                                                                       echo "<b>Due in: </b>" . $xml->direction[1]->tram[$i]['dueMins'] . " mins<br><br>";
@@ -177,7 +208,7 @@
 
                                       echo "<hr>";
                                       // this code counts the number of trams in each direction. index 0 is inbound, 1 is outbound.
-                                      echo count($xml->direction[0]);
+                                      echo count($xml->direction[1]);
                                       echo " trams forecast.";
 
 
