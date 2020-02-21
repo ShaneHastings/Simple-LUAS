@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<!-- RTPI /luas/ -->
+	<!-- Fare Calculator /luas/fare/index.php -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script type="text/javascript" src="js/stopSelector.js"></script>
+	<script type="text/javascript" src="../js/stopSelector.js"></script>
 	<!-- Icon Tags -->
 	<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -11,24 +11,24 @@
 	<link rel="manifest" href="site.webmanifest">
 	<link rel="icon" href="img/luas.svg" type="image/svg+xml" />
 	<meta name="theme-color" content="#503694">
-
+	
 	
 	<!-- Primary Meta Tags -->
-	<title>Simple LUAS -  Real Time Luas Information</title>
-	<meta name="title" content="Simple LUAS -  Real Time Luas Information">
+	<title>Simple LUAS -  Fare Calculator</title>
+	<meta name="title" content="Simple LUAS -  Fare Calculator">
 	<meta name="description" content="No ads, simple, clean and fast. Get up to date real time information for all Luas stops in Dublin anywhere.">
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://shanehastings.eu/luas/">
-	<meta property="og:title" content="Simple LUAS -  Real Time Luas Information">
+	<meta property="og:title" content="Simple LUAS -  Fare Calculator">
 	<meta property="og:description" content="No ads, simple, clean and fast. Get up to date real time information for all Luas stops in Dublin anywhere.">
 	<meta property="og:image" content="simpleluas.png">
 
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image">
 	<meta property="twitter:url" content="https://shanehastings.eu/luas/">
-	<meta property="twitter:title" content="Simple LUAS -  Real Time Luas Information">
+	<meta property="twitter:title" content="Simple LUAS -  Fare Calculator">
 	<meta property="twitter:description" content="No ads, simple, clean and fast. Get up to date real time information for all Luas stops in Dublin anywhere.">
 	<meta property="twitter:image" content="simpleluas.png">
 	
@@ -122,6 +122,8 @@
 		
 		
 		</div>
+		
+		<!-- http://luasforecasts.rpa.ie/xml/get.ashx?action=farecalc&from=ran&to=san&adults=1&children=1&encrypt=false -->
         <div class="columns">
 		  <div class="column">
 				  <div class="box">
@@ -130,7 +132,20 @@
 					<div class="media-content">
 					  <div class="content">
 						<p>
-						  <br>
+						  <div class="select">
+							  <select id='stopPicker'></select>
+							</div>
+						  
+						  
+						 
+						  
+						  
+						  
+						  
+						  
+						  
+						  
+						  
 						    <?php
                                               $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
 											  echo "<strong>" . utf8_decode($xml['stop']) . "</strong> <small>XXXXX Line</small> <small></small><br>";
@@ -152,39 +167,8 @@
 						</p>
 					  </div>
 					</div>
-				  </article>
-				</div>
-		  </div>
-		  <div class="column">
-				  <div class="box">
-				  <article class="media">
-
-					<div class="media-content">
-					  <div class="content">
-						<p>
-						  
-						  <br>
-						    <?php
-                                              $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
-											  echo "<strong>" . utf8_decode($xml['stop']) . "</strong> <small>XXXXX Line</small> <small></small><br>";
-                                              echo "<b>Direction: </b>" . $xml->direction[1]['name'] . "<hr>";
-                                              for ($i = 0; $i < count($xml->direction[1]); $i++) {
-                                                                      echo "<b>Destination: </b>" . $xml->direction[1]->tram[$i]['destination'] . "<br>";
-                                                                      echo "<b>Due in: </b>" . $xml->direction[1]->tram[$i]['dueMins'] . " mins<br><br>";
-                                                                      
-                                                      }
-
-
-                                      echo "<hr>";
-                                      // this code counts the number of trams in each direction. index 0 is inbound, 1 is outbound.
-                                      echo count($xml->direction[0]);
-                                      echo " trams forecast.";
-
-
-                                                      ?>
-						</p>
-					  </div>
-					</div>
+					
+					
 				  </article>
 				</div>
 		  </div>
