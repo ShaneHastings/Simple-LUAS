@@ -25,7 +25,8 @@ The response is XML in the format:
 - [x] Mobile and browser icons
 - [x] Bulma CSS (WIP)
 - [ ] Favourite stops
-- [ ] Line indicator (Green/Red)
+- [x] Line indicator (Green/Red)
+- [ ] Better line selection options (dynamic search, separate red/green line)
 - [x] List in progress... 
 
 ### Demo
