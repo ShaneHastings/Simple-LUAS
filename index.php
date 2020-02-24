@@ -3,6 +3,8 @@
   <head>
 	<!-- RTPI /luas/ -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Refresh every minute -->
+	<!-- <meta http-equiv="refresh" content="60"> -->
 	<script type="text/javascript" src="js/stopSelector.js"></script>
 	<!-- Icon Tags -->
 	<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
@@ -34,6 +36,7 @@
 	
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css" />
     <script defer="defer" src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
 	<style>
 		.title {
@@ -45,6 +48,7 @@
 	</style>
   </head>
   <body onload="populateStops()">
+
     <?php
 
 	function error_found(){
@@ -56,6 +60,7 @@
         $stopID = htmlspecialchars($_GET['stopID']);
     } else if(isset($_POST['stopID'])) {
         $stopID = htmlspecialchars($_POST['stopID']);
+
     }
             else {
                     
@@ -71,15 +76,35 @@
     }
 
 
+
+
     ?>
+	
+
+
     <section class="section">
+	
       <div class="container">
-        <h1 class="title">Simple LUAS <i class="fas fa-subway"></i></h1> 
+		<!-- Title Bar -->
+			<h1 class="title"><i class="fas fa-subway"></i>  Simple LUAS </h1>
         <p class="subtitle">Easy interaction with the 
         <strong>Luas RTPI API</strong>!</p>
         <div class="field">
           <div class="control has-icons-left">
-            <div class="select">
+
+            <div class="icon is-small is-left">
+			<i class="fas fa-subway"></i>
+			</div>
+          </div>
+        </div>
+		<!-- Title Bar End -->
+		<!-- Navigation Bar -->
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+		  <div id="navbarBasicExample" class="navbar-menu is-active">
+			<div class="navbar-start">
+			<a class="navbar-item">
+			
+			  <div class="select">
               <form name="stopIDS" action="index.php" method="get">
                 <select name="stopID" id='stopPicker' onchange="this.form.submit()">
                   <option selected="selected" value="<?php echo $stopID; ?>">
@@ -90,17 +115,32 @@
                 </select>
               </form>
             </div>
-            <div class="icon is-small is-left">
-			<i class="fas fa-subway"></i>
+
+			
+			</a>
+			  <a href="/" class="navbar-item is-active">
+				Real Time
+			  </a>
+
+			  <a href="/faq" class="navbar-item">
+				FAQ
+			  </a>
+			  
+			  <a href="/account" class="navbar-item">
+				Favourites
+			  </a>
 			</div>
-          </div>
-        </div>
+
+		  </div>
+		</nav>
+	<!-- Navigation Bar End-->
         <br />
+		
 		<!-- Service Alert Delete -->
 				
 		<script>
 				document.addEventListener('DOMContentLoaded', () => {
-		  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+		  (document.querySelectorAll('.message .delete') || []).forEach(($delete) => {
 			$notification = $delete.parentNode;
 
 			$delete.addEventListener('click', () => {
@@ -109,20 +149,28 @@
 		  });
 		});
 		</script>
-        <div class="notification is-info">
-		<button class="delete"></button>
-        <strong>Service Announcement</strong>
-        <br />
-		<Br>
-								<?php
+		<article class="message">
+		  <div class="message-header">
+			<p>Service Announcement</p>
+		  </div>
+		  <div class="message-body"><?php
                                 $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
 								echo  $xml->message . "<br>"; 
-								?>
-		
-		
-		
-		</div>
-        <div class="columns">
+								?>		  </div>
+		</article>
+
+
+        <div class="columns" id="rtpiboxes">
+				<!--
+				<script type="text/javascript">
+			var $rtpi = $("#rtpiboxes");
+			setInterval(function () {
+				$rtpi.load(<?php echo "'index.php?stopID=",$stopID," #rtpiboxes'";?>);
+				
+			}, 1000);
+	
+
+		</script>-->
 		  <div class="column">
 				  <div class="box">
 				  <!-- Line Indicator Box -->
@@ -218,17 +266,25 @@
 					</div>
 				  </article>
 				</div>
+				
 		  </div>
-
-		  
-		  
         </div>
-        <hr /><?php
+				  <div class="box">
+				  <article class="media">
+					<div class="media-content">
+					  <div class="content">
+						<p>
+								<?php
                                 $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
 
                                 echo "<b>Updated: </b>" . $xml['created']  ;
                                 
                                 ?>
+						</p>
+					  </div>
+					</div>
+				  </article>
+				</div>
       </div>
     </section>
 	
