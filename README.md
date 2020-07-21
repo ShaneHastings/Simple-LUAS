@@ -7,7 +7,7 @@ This project uses the RTPI API supplied by Transport for Ireland for the Luas. O
 
 ### API
 
-The RTPI API is available here: <http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=STS&encrypt=false>. You can find a list of the three character stop codes [here ( to be added )](https://shanehastings.eu/luas/faq.php).
+The RTPI API is available here: <http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=STS&encrypt=false>. You can find a list of the three character stop codes [here](https://luas.shanehastings.eu/js/stopSelector.js).
 
 The response is XML in the format:
 
