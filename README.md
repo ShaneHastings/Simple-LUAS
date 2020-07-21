@@ -1,4 +1,5 @@
 ![Simple LUAS Banner](https://shanehastings.eu/luas/simpleluas_banner_github.png)
+
 Simple, clean and fast. Real time passenger information for Dublin's LUAS tram system.
 # Simple LUAS
 
@@ -31,4 +32,4 @@ The response is XML in the format:
 
 ### Demo
 
-Check out the live version of the project **[here](https://shanehastings.eu/luas/)**.
+Check out the live version of the project **[here](https://luas.shanehastings.eu/)**.
