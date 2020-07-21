@@ -68,12 +68,10 @@
                     
     }
 
-    function displayStopDetails() {
+
         $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
 
-            echo "<b>Stop Name: </b>" . $xml['stop'] . " <br>";
-            echo "<b>Direction: </b>" . $xml->direction[1]['name'] . "<hr>";
-    }
+    
 
 
 
@@ -109,7 +107,6 @@
                 <select name="stopID" id='stopPicker' onchange="this.form.submit()">
                   <option selected="selected" value="<?php echo $stopID; ?>">
                     <?php 
-                            $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
                             echo utf8_decode($xml['stop']);?>
                   </option>
                 </select>
@@ -154,8 +151,7 @@
 			<p>Service Announcement</p>
 		  </div>
 		  <div class="message-body"><?php
-                                $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
-								echo  $xml->message . "<br>"; 
+								echo  $xml->message . "<br>";
 								?>		  </div>
 		</article>
 
@@ -178,8 +174,7 @@
 				  
 				  <?php 
 					$greenline = array("Broombridge","Cabra","Phibsborough","Grangegorman","Broadstone - DIT","Dominick","Parnell","O'Connell - Upper","OConnell - GPO","Marlborough","Westmoreland","Trinity","Dawson","St. Stephen's Green","Harcourt","Charlemont","Ranelagh","Beechwood","Cowper","Milltown","Windy Arbour","Dundrum","Balally","Kilmacud","Stillorgan","Sandyford","Central Park","Glencairn","The Gallops","Leopardstown Valley","Ballyogan Wood","Racecourse","Carrickmines","Brennanstown","Laughanstown","Cherrywood","Bride's Glen"); 
-					$xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
-					if (in_array(utf8_decode($xml['stop']), $greenline)) 
+					if (in_array(utf8_decode($xml['stop']), $greenline))
 					  { 
 							$isGreen = "success";
 					  } 
@@ -191,7 +186,7 @@
 				  
 						<article class="tile is-child notification is-<?php echo $isGreen; ?>">
 					   <p class="title">
-					   <?php $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
+					   <?php
 							  echo utf8_decode($xml['stop']) . "</p>  <p class='subtitle'>" . $xml->direction[0]['name'] . "</p>"; ?>
 
 					   </article>
@@ -205,7 +200,6 @@
 						  
 						  <br>
 						    <?php
-                                              $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
                                               for ($i = 0; $i < count($xml->direction[0]); $i++) {
                                                                       echo "<b>Destination: </b>" . $xml->direction[0]->tram[$i]['destination'] . "<br>";
                                                                       echo "<b>Due in: </b>" . $xml->direction[0]->tram[$i]['dueMins'] . " mins<br><br>";
@@ -232,7 +226,7 @@
 				  <div class="tile">
 						<article class="tile is-child notification is-<?php echo $isGreen; ?>">
 					   <p class="title">
-					   <?php $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
+					   <?php
 							  echo utf8_decode($xml['stop']) . "</p>  <p class='subtitle'>" . $xml->direction[1]['name'] . "</p>"; ?>
 
 					   </article>
@@ -246,7 +240,6 @@
 						  
 						  <br>
 						    <?php
-                                              $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
                                               for ($i = 0; $i < count($xml->direction[1]); $i++) {
                                                                       echo "<b>Destination: </b>" . $xml->direction[1]->tram[$i]['destination'] . "<br>";
                                                                       echo "<b>Due in: </b>" . $xml->direction[1]->tram[$i]['dueMins'] . " mins<br><br>";
@@ -275,7 +268,6 @@
 					  <div class="content">
 						<p>
 								<?php
-                                $xml=simplexml_load_file("http://luasforecasts.rpa.ie/xml/get.ashx?action=forecast&stop=$stopID&encrypt=false") or die("Error: Cannot create object");
 
                                 echo "<b>Updated: </b>" . $xml['created']  ;
                                 
